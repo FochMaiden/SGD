@@ -7,7 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		302DAD9C21F5FF4A0087985F /* Vector2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 302DAD9B21F5FF4A0087985F /* Vector2D.cpp */; };
+		302DADA121F61EBE0087985F /* Collision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 302DAD9F21F61EBE0087985F /* Collision.cpp */; };
+		302DADA421F651F30087985F /* ECS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 302DADA321F651F30087985F /* ECS.cpp */; };
+		302DADA821F7A57A0087985F /* AssetManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 302DADA621F7A57A0087985F /* AssetManager.cpp */; };
 		30AE534D21F492180068D260 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30AE534C21F492180068D260 /* main.cpp */; };
+		30AE535721F4924C0068D260 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AE535421F4924C0068D260 /* SDL2_image.framework */; };
+		30AE535821F4924C0068D260 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AE535521F4924C0068D260 /* SDL2_ttf.framework */; };
+		30AE535921F4924C0068D260 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AE535621F4924C0068D260 /* SDL2.framework */; };
+		30AE535C21F494400068D260 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30AE535A21F494400068D260 /* Game.cpp */; };
+		30AE536521F4ABC40068D260 /* TextureManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30AE536321F4ABC40068D260 /* TextureManager.cpp */; };
+		30AE536C21F4C4090068D260 /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30AE536A21F4C4090068D260 /* Map.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +33,32 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		30AE534921F492180068D260 /* Liann */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Liann; sourceTree = BUILT_PRODUCTS_DIR; };
+		302DAD9521F507F90087985F /* Components.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = Components.h; sourceTree = "<group>"; };
+		302DAD9621F50A350087985F /* ECS.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = ECS.h; sourceTree = "<group>"; };
+		302DAD9821F5F5200087985F /* SpriteComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpriteComponent.h; sourceTree = "<group>"; };
+		302DAD9921F5F5390087985F /* TransformComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransformComponent.h; sourceTree = "<group>"; };
+		302DAD9A21F5FDE20087985F /* Vector2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vector2D.h; sourceTree = "<group>"; };
+		302DAD9B21F5FF4A0087985F /* Vector2D.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vector2D.cpp; sourceTree = "<group>"; };
+		302DAD9D21F605EB0087985F /* KeyboardController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyboardController.h; sourceTree = "<group>"; };
+		302DAD9E21F60E980087985F /* ColliderComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColliderComponent.h; sourceTree = "<group>"; };
+		302DAD9F21F61EBE0087985F /* Collision.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Collision.cpp; sourceTree = "<group>"; };
+		302DADA021F61EBE0087985F /* Collision.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Collision.h; sourceTree = "<group>"; };
+		302DADA221F62C3E0087985F /* TileComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TileComponent.h; sourceTree = "<group>"; };
+		302DADA321F651F30087985F /* ECS.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ECS.cpp; sourceTree = "<group>"; };
+		302DADA521F73EFC0087985F /* Animation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Animation.h; sourceTree = "<group>"; };
+		302DADA621F7A57A0087985F /* AssetManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AssetManager.cpp; sourceTree = "<group>"; };
+		302DADA721F7A57A0087985F /* AssetManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetManager.h; sourceTree = "<group>"; };
 		30AE534C21F492180068D260 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		30AE535421F4924C0068D260 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		30AE535521F4924C0068D260 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
+		30AE535621F4924C0068D260 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		30AE535A21F494400068D260 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		30AE535B21F494400068D260 /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		30AE536321F4ABC40068D260 /* TextureManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextureManager.cpp; sourceTree = "<group>"; };
+		30AE536421F4ABC40068D260 /* TextureManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextureManager.h; sourceTree = "<group>"; };
+		30AE536A21F4C4090068D260 /* Map.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Map.cpp; sourceTree = "<group>"; };
+		30AE536B21F4C4090068D260 /* Map.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
+		30F494FC21F7B96300D40D80 /* Liann */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = Liann; path = /Users/fochmaiden/Documents/studia/SGD/Liann/build/Debug/Liann; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,34 +66,84 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30AE535721F4924C0068D260 /* SDL2_image.framework in Frameworks */,
+				30AE535821F4924C0068D260 /* SDL2_ttf.framework in Frameworks */,
+				30AE535921F4924C0068D260 /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		302DAD9721F5F4A00087985F /* ECS */ = {
+			isa = PBXGroup;
+			children = (
+				302DADA521F73EFC0087985F /* Animation.h */,
+				302DAD9E21F60E980087985F /* ColliderComponent.h */,
+				302DAD9521F507F90087985F /* Components.h */,
+				302DADA321F651F30087985F /* ECS.cpp */,
+				302DAD9621F50A350087985F /* ECS.h */,
+				302DAD9D21F605EB0087985F /* KeyboardController.h */,
+				302DAD9821F5F5200087985F /* SpriteComponent.h */,
+				302DADA221F62C3E0087985F /* TileComponent.h */,
+				302DAD9921F5F5390087985F /* TransformComponent.h */,
+			);
+			path = ECS;
+			sourceTree = "<group>";
+		};
 		30AE534021F492180068D260 = {
 			isa = PBXGroup;
 			children = (
 				30AE534B21F492180068D260 /* Liann */,
-				30AE534A21F492180068D260 /* Products */,
+				30AE535321F4924C0068D260 /* Frameworks */,
 			);
-			sourceTree = "<group>";
-		};
-		30AE534A21F492180068D260 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				30AE534921F492180068D260 /* Liann */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		30AE534B21F492180068D260 /* Liann */ = {
 			isa = PBXGroup;
 			children = (
-				30AE534C21F492180068D260 /* main.cpp */,
+				30AE536921F4AD6F0068D260 /* src */,
+				30AE535D21F4A5A70068D260 /* res */,
 			);
 			path = Liann;
+			sourceTree = "<group>";
+		};
+		30AE535321F4924C0068D260 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				30AE535421F4924C0068D260 /* SDL2_image.framework */,
+				30AE535521F4924C0068D260 /* SDL2_ttf.framework */,
+				30AE535621F4924C0068D260 /* SDL2.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		30AE535D21F4A5A70068D260 /* res */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = res;
+			sourceTree = "<group>";
+		};
+		30AE536921F4AD6F0068D260 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				302DADA621F7A57A0087985F /* AssetManager.cpp */,
+				302DADA721F7A57A0087985F /* AssetManager.h */,
+				302DAD9F21F61EBE0087985F /* Collision.cpp */,
+				302DADA021F61EBE0087985F /* Collision.h */,
+				302DAD9721F5F4A00087985F /* ECS */,
+				30AE535A21F494400068D260 /* Game.cpp */,
+				30AE535B21F494400068D260 /* Game.h */,
+				30AE534C21F492180068D260 /* main.cpp */,
+				30AE536A21F4C4090068D260 /* Map.cpp */,
+				30AE536B21F4C4090068D260 /* Map.h */,
+				30AE536321F4ABC40068D260 /* TextureManager.cpp */,
+				30AE536421F4ABC40068D260 /* TextureManager.h */,
+				302DAD9B21F5FF4A0087985F /* Vector2D.cpp */,
+				302DAD9A21F5FDE20087985F /* Vector2D.h */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -79,7 +163,7 @@
 			);
 			name = Liann;
 			productName = Liann;
-			productReference = 30AE534921F492180068D260 /* Liann */;
+			productReference = 30F494FC21F7B96300D40D80 /* Liann */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -104,7 +188,7 @@
 				en,
 			);
 			mainGroup = 30AE534021F492180068D260;
-			productRefGroup = 30AE534A21F492180068D260 /* Products */;
+			productRefGroup = 30AE534021F492180068D260;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -118,7 +202,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				302DADA121F61EBE0087985F /* Collision.cpp in Sources */,
+				30AE536C21F4C4090068D260 /* Map.cpp in Sources */,
+				302DADA421F651F30087985F /* ECS.cpp in Sources */,
+				302DAD9C21F5FF4A0087985F /* Vector2D.cpp in Sources */,
+				302DADA821F7A57A0087985F /* AssetManager.cpp in Sources */,
 				30AE534D21F492180068D260 /* main.cpp in Sources */,
+				30AE535C21F494400068D260 /* Game.cpp in Sources */,
+				30AE536521F4ABC40068D260 /* TextureManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +331,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -248,6 +343,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
