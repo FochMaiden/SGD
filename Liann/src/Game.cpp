@@ -26,7 +26,7 @@ AssetManager* Game::assets = new AssetManager(&manager);
 
 bool Game::isRunning = false;
 
-auto& player(manager.addEntity());
+//auto& player(manager.addEntity());
 
 Game::Game(){}
 
@@ -65,11 +65,7 @@ void Game::init(const char *title, int width, int height, bool fullscreen){
     map = new Map("terrain", 3, 32);
     map->LoadMap("res/map2.txt", 25, 20);
     
-    player.addComponent<TransformComponent>(800, 640, 32, 32, 4);
-    player.addComponent<SpriteComponent>("player", true);
-    player.addComponent<KeybardController>();
-    player.addComponent<ColliderComponent>("player");
-    player.addGroup(groupPlayers);
+    assets->CreatePlayer("player");
     
     assets->CreateProjectile(Vector2D(600, 600),Vector2D(2,0), 200, 2, "projectile");
     assets->CreateProjectile(Vector2D(600, 600),Vector2D(2,0), 200, 2, "projectile");
@@ -95,43 +91,44 @@ void Game::handleEvents(){
     }
 }
 void Game::update(){
-    
-    SDL_Rect playerCol = player.getComponent<ColliderComponent>().collider;
-    Vector2D playerPos = player.getComponent<TransformComponent>().position;
-    
-    manager.refresh();
-    manager.update();
-    
-    for(auto& c : colliders){
-        SDL_Rect cCol = c->getComponent<ColliderComponent>().collider;
-        if (Collision::AABB(cCol, playerCol)) {
-            player.getComponent<TransformComponent>().position = playerPos;
+    for(auto& p :players){
+        SDL_Rect playerCol = p->getComponent<ColliderComponent>().collider;
+        Vector2D playerPos = p->getComponent<TransformComponent>().position;
+        
+        manager.refresh();
+        manager.update();
+        
+        for(auto& c : colliders){
+            SDL_Rect cCol = c->getComponent<ColliderComponent>().collider;
+            if (Collision::AABB(cCol, playerCol)) {
+                p->getComponent<TransformComponent>().position = playerPos;
+            }
         }
-    }
-    for (auto& p : projectiles) {
-        if(Collision::AABB(player.getComponent<ColliderComponent>().collider, p->getComponent<ColliderComponent>().collider)){
-            std::cout << "Hit player" << std::endl;
-            p->destroy();
+        for (auto& pr : projectiles) {
+            if(Collision::AABB(p->getComponent<ColliderComponent>().collider, pr->getComponent<ColliderComponent>().collider)){
+                std::cout << "Hit player" << std::endl;
+                pr->destroy();
+            }
         }
-    }
     
-    camera.x = player.getComponent<TransformComponent>().position.x - 400;
-    camera.y = player.getComponent<TransformComponent>().position.y - 320;
-    
-    std::cout << "x:" << player.getComponent<TransformComponent>().position.x  << "y:" << player.getComponent<TransformComponent>().position.y <<std::endl;
-    std::cout << "x:" << camera.w  << "y:" << camera.h <<std::endl;
-    
-    if (camera.x < 0) {
-        camera.x = 0;
-    }
-    if (camera.y < 0) {
-        camera.y = 0;
-    }
-    if (camera.x > camera.w*2) {
-        camera.x = camera.w*2;
-    }
-    if (camera.y  > camera.h*2) {
-        camera.y = camera.h*2;
+        camera.x = p->getComponent<TransformComponent>().position.x - 400;
+        camera.y = p->getComponent<TransformComponent>().position.y - 320;
+        
+    //    std::cout << "x:" << player.getComponent<TransformComponent>().position.x  << "y:" << player.getComponent<TransformComponent>().position.y <<std::endl;
+        std::cout << "x:" << camera.w  << "y:" << camera.h <<std::endl;
+        
+        if (camera.x < 0) {
+            camera.x = 0;
+        }
+        if (camera.y < 0) {
+            camera.y = 0;
+        }
+        if (camera.x > camera.w*2) {
+            camera.x = camera.w*2;
+        }
+        if (camera.y  > camera.h*2) {
+            camera.y = camera.h;
+        }
     }
 
 }

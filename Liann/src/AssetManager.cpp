@@ -24,6 +24,14 @@ void AssetManager::CreateProjectile(Vector2D pos, Vector2D vel, int range, int s
     projecitle.addGroup(Game::groupProjectiles);
 }
 
+void AssetManager::CreatePlayer(std::string id){
+    auto& player(manager->addEntity());
+    player.addComponent<TransformComponent>(800, 640, 32, 32, 4);
+    player.addComponent<SpriteComponent>("player", true);
+    player.addComponent<KeybardController>();
+    player.addComponent<ColliderComponent>("player");
+    player.addGroup(Game::groupPlayers);
+}
 
 //textures
 void AssetManager::AddTexture(std::string id, const char* path){
