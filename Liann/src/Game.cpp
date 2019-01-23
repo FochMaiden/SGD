@@ -120,10 +120,10 @@ void Game::update(){
     if (Game::event.type == SDL_KEYDOWN) {
         switch (Game::event.key.keysym.sym) {
             case SDLK_q:
-                 assets->CreateProjectile(playerPos,Vector2D(-2,-2), 200, 2, "projectile");
+                 assets->CreateProjectile(Vector2D(playerPos.x-20, playerPos.y),Vector2D(-2,-2), 200, 2, "projectile");
                 break;
             case SDLK_e:
-                assets->CreateProjectile(playerPos,Vector2D(2,-2), 200, 2, "projectile");
+                assets->CreateProjectile(Vector2D(playerPos.x+80, playerPos.y),Vector2D(2,-2), 200, 2, "projectile");
                 break;
                 
         }}
@@ -143,9 +143,12 @@ void Game::update(){
     for(auto& monster : monsters){
         for(auto& projectile : projectiles){
             if (Collision::AABB(monster->getComponent<ColliderComponent>().collider, projectile->getComponent<ColliderComponent>().collider)) {
-                std::cout << "aaa" << std::endl;
                 monster->destroy();
                 projectile->destroy();
+                int counter=0;
+                counter++;
+                
+                std::cout << counter << std::endl;
             }
         }
     }

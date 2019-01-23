@@ -51,10 +51,6 @@ public:
                     transform-> velocity.y = 1;
                     sprite->Play("Walk");
                     break;
-                case SDLK_SPACE:
-                    if (transform->onGround) {
-                        transform-> velocity.y = -12;
-                    }
                 default:
                     break;
             }
@@ -76,12 +72,6 @@ public:
                     break;
                 case SDLK_s:
                     transform-> velocity.y = 0;
-                    sprite->Play("Idle");
-                    break;
-                case SDLK_SPACE:
-                    if (transform-> velocity.y < -6) {
-                        transform->velocity.y = 6;
-                    };
                     sprite->Play("Idle");
                     break;
                 case SDLK_ESCAPE:
