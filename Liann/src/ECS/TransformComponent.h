@@ -25,6 +25,8 @@ public:
     
     int speed = 3;
     
+    bool onGround = false;
+    
     TransformComponent(){
         position.Zero();
     }
@@ -35,7 +37,9 @@ public:
     TransformComponent(float x, float y){
         position.Zero();
     }
-    
+    TransformComponent(bool og){
+        onGround = og;
+    }
     TransformComponent(float x, float y, int h, int w, int sc){
         position.x = x;
         position.y = y;

@@ -11,7 +11,7 @@
 #include "../Game.h"
 #include "ECS.h"
 #include "Components.h"
-#include "ColliderComponent.h"
+
 
 class KeybardController : public Component {
     
@@ -19,21 +19,17 @@ public:
     TransformComponent *transform;
     SpriteComponent *sprite;
     
-    bool jumping = false;
-    int jumpingTime = 0;
-    
     void init() override{
         transform = &entity->getComponent<TransformComponent>();
         sprite= &entity->getComponent<SpriteComponent>();
     }
-    
     void update() override{
         
 //        Vector2D pos = transform-> position;
-        Vector2D vel = transform-> velocity;
-        
+//       Vector2D vel = transform-> velocity;
+//        Vector2D pos = transform-> position;
 //        std::cout << "pos x" << pos.x << "pos y" << pos.y << std::endl;
-//        std::cout << "pos x" << vel.x << "vel y" << vel.y << std::endl;
+//       std::cout << "pos x" << vel.x << "vel y" << vel.y << std::endl;
 //        std::cout << jumpingTime << std::endl;
         
         if (Game::event.type == SDL_KEYDOWN) {
@@ -56,11 +52,9 @@ public:
                     sprite->Play("Walk");
                     break;
                 case SDLK_SPACE:
-                    
-//                    if (!jumping) {
-//                        jumping = true;
-                        transform-> velocity.y = -12.0f;
-                   // }
+                    if (transform->onGround) {
+                        transform-> velocity.y = -12;
+                    }
                 default:
                     break;
             }
@@ -85,17 +79,9 @@ public:
                     sprite->Play("Idle");
                     break;
                 case SDLK_SPACE:
-//                    if (vel.y > 1) {
-//                        jumpingTime ++;
-//                    }
-                    if (vel.y < -6.0f) {
-                        transform->velocity.y = 6.0f;
+                    if (transform-> velocity.y < -6) {
+                        transform->velocity.y = 6;
                     };
-//                    if (jumpingTime == 16 || vel.y ==0){
-//                        transform->velocity.y = 0;
-//                        jumpingTime = 0;
-//                        jumping = false;
-//                    }
                     sprite->Play("Idle");
                     break;
                 case SDLK_ESCAPE:
@@ -103,6 +89,8 @@ public:
                 default:
                     break;
             }
+            
+            
         }
     }
 };

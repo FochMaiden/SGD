@@ -110,27 +110,45 @@ void Game::update(){
     
     for(auto& c : colliders){
         SDL_Rect cCol = c->getComponent<ColliderComponent>().collider;
-        if (Collision::CircleCircle(cCol, playerCol)) {
+        if (Collision::AABB(cCol, playerCol)) {
             std::cout << "Hit" << playerPos << std::endl;
             
             player.getComponent<TransformComponent>().position = playerPos;
+            player.getComponent<TransformComponent>().onGround = true;
         }
     }
-    manager.refresh();
+    if (Game::event.type == SDL_KEYDOWN) {
+        switch (Game::event.key.keysym.sym) {
+            case SDLK_q:
+                 assets->CreateProjectile(playerPos,Vector2D(-2,-2), 200, 2, "projectile");
+                break;
+            case SDLK_e:
+                assets->CreateProjectile(playerPos,Vector2D(2,-2), 200, 2, "projectile");
+                break;
+                
+        }}
     for (auto& pr : projectiles) {
         if(Collision::AABB(pr->getComponent<ColliderComponent>().collider, player.getComponent<ColliderComponent>().collider)){
             std::cout << "Hit player" << std::endl;
-            pr->destroy();
+          //  pr->destroy();
         }
     }
-    manager.refresh();
     for (auto& m : monsters) {
         if(Collision::AABB(m->getComponent<ColliderComponent>().collider, player.getComponent<ColliderComponent>().collider)){
             std::cout << "Player hit" << std::endl;
             m->destroy();
         }
     }
-    manager.refresh();
+    
+    for(auto& monster : monsters){
+        for(auto& projectile : projectiles){
+            if (Collision::AABB(monster->getComponent<ColliderComponent>().collider, projectile->getComponent<ColliderComponent>().collider)) {
+                std::cout << "aaa" << std::endl;
+                monster->destroy();
+                projectile->destroy();
+            }
+        }
+    }
     
     camera.x = player.getComponent<TransformComponent>().position.x - 400;
     camera.y = player.getComponent<TransformComponent>().position.y - 320;

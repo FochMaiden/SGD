@@ -50,6 +50,7 @@ bool Collision::CircleSquare(const SDL_Rect& recA, const SDL_Rect& recB){
     circleAy = recA.y;
     circleAr = recA.h/2;
     
+    
     if (circleAx < recB.x) {
         cX = recB.x;
     }else if (circleAx > recB.x + recB.w){
