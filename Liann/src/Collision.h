@@ -15,7 +15,9 @@ class ColliderComponent;
 
 class Collision {
     
-public:
+public:    
+    static bool CircleCircle(const SDL_Rect& recA, const SDL_Rect& recB);
+    static bool CircleSquare(const SDL_Rect& recA, const SDL_Rect& recB);
     static bool AABB(const SDL_Rect& recA, const SDL_Rect& recB);
     static bool AABB(const ColliderComponent& colA, const ColliderComponent& colB);
 };

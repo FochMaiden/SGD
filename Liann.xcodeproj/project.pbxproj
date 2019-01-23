@@ -58,7 +58,7 @@
 		30AE536421F4ABC40068D260 /* TextureManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextureManager.h; sourceTree = "<group>"; };
 		30AE536A21F4C4090068D260 /* Map.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Map.cpp; sourceTree = "<group>"; };
 		30AE536B21F4C4090068D260 /* Map.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
-		30E4554121F8862100151B17 /* Liann */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Liann; sourceTree = BUILT_PRODUCTS_DIR; };
+		30E4554121F8862100151B17 /* Liann */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = Liann; path = /Users/fochmaiden/Documents/studia/SGD/Liann/build/Debug/Liann; sourceTree = "<absolute>"; };
 		30E4554221F888AB00151B17 /* ProjectileComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectileComponent.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,7 +98,6 @@
 			children = (
 				30AE534B21F492180068D260 /* Liann */,
 				30AE535321F4924C0068D260 /* Frameworks */,
-				30E4554121F8862100151B17 /* Liann */,
 			);
 			sourceTree = "<group>";
 		};

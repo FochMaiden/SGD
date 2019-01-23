@@ -38,7 +38,7 @@ class Game {
     enum groupLables : std::size_t {
         groupMap,
         groupPlayers,
-        //groupMonsters,
+        groupMonsters,
         groupColliders,
         groupProjectiles
     };

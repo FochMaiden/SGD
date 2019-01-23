@@ -21,7 +21,7 @@ public:
   
     //gameobjects
     void CreateProjectile(Vector2D pos, Vector2D vel, int range, int speed, std::string id);
-    void CreatePlayer(std::string id);
+    void CreateMonster(std::string id);
     
     //texture manager
     void AddTexture(std::string id, const char* path);
