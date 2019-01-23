@@ -11,16 +11,19 @@
 #include "../Game.h"
 #include "ECS.h"
 #include "Components.h"
+#include "ProjectileComponent.h"
 
 class KeybardController : public Component {
     
 public:
     TransformComponent *transform;
     SpriteComponent *sprite;
+    ProjectileComponent *projectile;
     
     void init() override{
         transform = &entity->getComponent<TransformComponent>();
         sprite= &entity->getComponent<SpriteComponent>();
+        projectile= &entity->getComponent<ProjectileComponent>();
     }
     
     void update() override{

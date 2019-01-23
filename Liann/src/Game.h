@@ -13,9 +13,8 @@
 #include <iostream>
 #include <vector>
 
-
-
 class ColliderComponent;
+class AssetManager;
 
 class Game {
     public:
@@ -30,6 +29,7 @@ class Game {
         void render();
         void clean();
     
+        static AssetManager* assets;
         static SDL_Renderer *renderer;
         static SDL_Event event;
         static bool isRunning;
@@ -39,7 +39,8 @@ class Game {
         groupMap,
         groupPlayers,
         //groupMonsters,
-        groupColliders
+        groupColliders,
+        groupProjectiles
     };
     
     private:

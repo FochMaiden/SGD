@@ -13,6 +13,7 @@
 #include "Collision.h"
 #include "AssetManager.h"
 
+
 Map* map;
 Manager manager;
 
@@ -20,6 +21,8 @@ SDL_Renderer* Game::renderer = nullptr;
 SDL_Event Game::event;
 
 SDL_Rect Game::camera{0,0,800,640};
+
+AssetManager* Game::assets = new AssetManager(&manager);
 
 bool Game::isRunning = false;
 
@@ -55,21 +58,28 @@ void Game::init(const char *title, int width, int height, bool fullscreen){
         
         isRunning = true;
     }
+    assets->AddTexture("terrain", "res/terrain_ss.png");
+    assets->AddTexture("player", "res/player_anims.png");
+    assets->AddTexture("projectile", "res/proj.png");
     
-    map = new Map("res/terrain_ss.png", 3, 32);
-    map->LoadMap("res/map.txt", 25, 20);
+    map = new Map("terrain", 3, 32);
+    map->LoadMap("res/map2.txt", 25, 20);
     
     player.addComponent<TransformComponent>(800, 640, 32, 32, 4);
-    player.addComponent<SpriteComponent>("res/player_anims.png", true);
+    player.addComponent<SpriteComponent>("player", true);
     player.addComponent<KeybardController>();
     player.addComponent<ColliderComponent>("player");
     player.addGroup(groupPlayers);
-
+    
+    assets->CreateProjectile(Vector2D(600, 600),Vector2D(2,0), 200, 2, "projectile");
+    assets->CreateProjectile(Vector2D(600, 600),Vector2D(2,0), 200, 2, "projectile");
+    
 }
 
 auto& tiles(manager.getGroup(Game::groupMap));
 auto& players(manager.getGroup(Game::groupPlayers));
 auto& colliders(manager.getGroup(Game::groupColliders));
+auto& projectiles(manager.getGroup(Game::groupProjectiles));
 //auto& monsters(manager.getGroup(Game::groupMonsters));
 
 void Game::handleEvents(){
@@ -98,9 +108,18 @@ void Game::update(){
             player.getComponent<TransformComponent>().position = playerPos;
         }
     }
+    for (auto& p : projectiles) {
+        if(Collision::AABB(player.getComponent<ColliderComponent>().collider, p->getComponent<ColliderComponent>().collider)){
+            std::cout << "Hit player" << std::endl;
+            p->destroy();
+        }
+    }
     
     camera.x = player.getComponent<TransformComponent>().position.x - 400;
     camera.y = player.getComponent<TransformComponent>().position.y - 320;
+    
+    std::cout << "x:" << player.getComponent<TransformComponent>().position.x  << "y:" << player.getComponent<TransformComponent>().position.y <<std::endl;
+    std::cout << "x:" << camera.w  << "y:" << camera.h <<std::endl;
     
     if (camera.x < 0) {
         camera.x = 0;
@@ -108,11 +127,11 @@ void Game::update(){
     if (camera.y < 0) {
         camera.y = 0;
     }
-    if (camera.x > camera.w) {
-        camera.x = camera.w;
+    if (camera.x > camera.w*2) {
+        camera.x = camera.w*2;
     }
-    if (camera.y > camera.h) {
-        camera.y = camera.h;
+    if (camera.y  > camera.h*2) {
+        camera.y = camera.h*2;
     }
 
 }
@@ -127,12 +146,16 @@ void Game::render(){
     for (auto& t : tiles){
         t->draw();
     }
+    for (auto& c : colliders) {
+        c->draw();
+    }
     for (auto& p : players){
         p->draw();
     }
-  for (auto& c : colliders) {
-      c->draw();
-  }
+    for(auto& p : projectiles){
+        p->draw();
+    }
+
 //    for (auto& m : monsters){
 //        m->draw();
 //    }
