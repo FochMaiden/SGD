@@ -28,11 +28,15 @@ bool Game::isRunning = false;
 
 auto& player(manager.addEntity());
 
+int counter=0;
+
 Game::Game(){}
 
 Game::~Game(){}
 
 void Game::init(const char *title, int width, int height, bool fullscreen){
+    
+    
     int flags = 0;
     
     if(fullscreen){
@@ -102,6 +106,8 @@ void Game::handleEvents(){
 }
 void Game::update(){
     
+     std::cout << counter << std::endl;
+    
     SDL_Rect playerCol = player.getComponent<ColliderComponent>().collider;
     Vector2D playerPos = player.getComponent<TransformComponent>().position;
     
@@ -117,16 +123,6 @@ void Game::update(){
             player.getComponent<TransformComponent>().onGround = true;
         }
     }
-    if (Game::event.type == SDL_KEYDOWN) {
-        switch (Game::event.key.keysym.sym) {
-            case SDLK_q:
-                 assets->CreateProjectile(Vector2D(playerPos.x-20, playerPos.y),Vector2D(-2,-2), 200, 2, "projectile");
-                break;
-            case SDLK_e:
-                assets->CreateProjectile(Vector2D(playerPos.x+80, playerPos.y),Vector2D(2,-2), 200, 2, "projectile");
-                break;
-                
-        }}
     for (auto& pr : projectiles) {
         if(Collision::AABB(pr->getComponent<ColliderComponent>().collider, player.getComponent<ColliderComponent>().collider)){
             std::cout << "Hit player" << std::endl;
@@ -140,19 +136,28 @@ void Game::update(){
         }
     }
     
+    if (Game::event.type == SDL_KEYDOWN) {
+        switch (Game::event.key.keysym.sym) {
+            case SDLK_q:
+                assets->CreateProjectile(Vector2D(playerPos.x-20, playerPos.y),Vector2D(-2,-2), 200, 2, "projectile");
+                break;
+            case SDLK_e:
+                assets->CreateProjectile(Vector2D(playerPos.x+80, playerPos.y),Vector2D(2,-2), 200, 2, "projectile");
+                break;
+                
+        }}
+
+    
     for(auto& monster : monsters){
         for(auto& projectile : projectiles){
             if (Collision::AABB(monster->getComponent<ColliderComponent>().collider, projectile->getComponent<ColliderComponent>().collider)) {
                 monster->destroy();
                 projectile->destroy();
-                int counter=0;
-                counter++;
-                
-                std::cout << counter << std::endl;
+                counter = counter+1;
             }
         }
     }
-    
+
     camera.x = player.getComponent<TransformComponent>().position.x - 400;
     camera.y = player.getComponent<TransformComponent>().position.y - 320;
     
@@ -181,7 +186,6 @@ void Game::render(){
     
     SDL_RenderClear(renderer);
     
-    //stuff to render
     for (auto& t : tiles){
         t->draw();
     }
