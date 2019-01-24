@@ -74,12 +74,12 @@ void Game::init(const char *title, int width, int height, bool fullscreen){
     assets->AddTexture("projectile", "res/proj.png");
     assets->AddTexture("monster", "res/monster.png");
     
-    assets->AddFont("font", "res/font.ttf", 16);
+    assets->AddFont("font", "res/font.ttf", 20);
     
     map = new Map("terrain", 5, 32);
     map->LoadMap("res/map.txt", 25, 20);
     
-    player.addComponent<TransformComponent>(1600, 1800, 32, 32, 4);
+    player.addComponent<TransformComponent>(1600, 1800, 32, 32, 3);
     player.addComponent<SpriteComponent>("player", true);
     player.addComponent<KeybardController>();
     player.addComponent<ColliderComponent>("player");
@@ -130,6 +130,14 @@ void Game::update(){
         }
     }
 
+    for (auto& m : monsters) {
+        if(Collision::AABB(m->getComponent<ColliderComponent>().collider, player.getComponent<ColliderComponent>().collider)){
+           // std::cout << "Player hit" << std::endl;
+            counter++;
+            m->destroy();
+        }
+    }
+    
     if (Game::event.type == SDL_KEYDOWN) {
         switch (Game::event.key.keysym.sym) {
             case SDLK_q:
@@ -147,7 +155,7 @@ void Game::update(){
             if (Collision::AABB(monster->getComponent<ColliderComponent>().collider, projectile->getComponent<ColliderComponent>().collider)) {
                 monster->destroy();
                 projectile->destroy();
-                counter = counter+1;
+                counter++;
             }
         }
     }
@@ -170,11 +178,11 @@ void Game::update(){
     if (camera.y < 0) {
         camera.y = 0;
     }
-    if (camera.x > camera.w*6) {
-        camera.x = camera.w*6;
+    if (camera.x > camera.w*3) {
+        camera.x = camera.w*3;
     }
-    if (camera.y  > camera.h*6) {
-        camera.y = camera.h*6;
+    if (camera.y  > camera.h*3) {
+        camera.y = camera.h*3;
     }
 
 }
@@ -191,16 +199,19 @@ void Game::render(){
 //    for (auto& c : colliders) {
 //        c->draw();
 //    }
-    for (auto& p : players){
-        p->draw();
-    }
+
     for(auto& pr : projectiles){
         pr->draw();
     }
+    
    for (auto& m : monsters){
        m->draw();
-       
-   }
+    }
+    
+    for (auto& p : players){
+        p->draw();
+    }
+    
     label.draw();
     
     SDL_RenderPresent(renderer);
