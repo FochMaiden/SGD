@@ -25,30 +25,23 @@ public:
     }
     void update() override{
         
-//        Vector2D pos = transform-> position;
-//       Vector2D vel = transform-> velocity;
-//        Vector2D pos = transform-> position;
-//        std::cout << "pos x" << pos.x << "pos y" << pos.y << std::endl;
-//       std::cout << "pos x" << vel.x << "vel y" << vel.y << std::endl;
-//        std::cout << jumpingTime << std::endl;
-        
         if (Game::event.type == SDL_KEYDOWN) {
             switch (Game::event.key.keysym.sym) {
-                case SDLK_w:
-                    transform-> velocity.y = -1;
+                case SDLK_UP:
+                    transform-> velocity.y = -2;
                     sprite->Play("Walk");
                     break;
-                case SDLK_a:
-                    transform-> velocity.x = -1;
+                case SDLK_LEFT:
+                    transform-> velocity.x = -2;
                     sprite->Play("Walk");
                     sprite->spriteFlip = SDL_FLIP_HORIZONTAL;
                     break;
-                case SDLK_d:
-                    transform-> velocity.x = 1;
+                case SDLK_RIGHT:
+                    transform-> velocity.x = 2;
                     sprite->Play("Walk");
                     break;
-                case SDLK_s:
-                    transform-> velocity.y = 1;
+                case SDLK_DOWN:
+                    transform-> velocity.y = 2;
                     sprite->Play("Walk");
                     break;
                 default:
@@ -57,20 +50,20 @@ public:
         }
         if(Game::event.type == SDL_KEYUP){
             switch (Game::event.key.keysym.sym) {
-                case SDLK_w:
+                case SDLK_UP:
                     transform-> velocity.y = 0;
                     sprite->Play("Idle");
                     break;
-                case SDLK_a:
+                case SDLK_LEFT:
                     transform-> velocity.x = 0;
                     sprite->Play("Idle");
                     sprite->spriteFlip = SDL_FLIP_NONE;
                     break;
-                case SDLK_d:
+                case SDLK_RIGHT:
                     transform-> velocity.x = 0;
                     sprite->Play("Idle");
                     break;
-                case SDLK_s:
+                case SDLK_DOWN:
                     transform-> velocity.y = 0;
                     sprite->Play("Idle");
                     break;

@@ -110,18 +110,12 @@ void Game::handleEvents(){
 }
 void Game::update(){
     
-   //  std::cout << counter << std::endl;
-    
     SDL_Rect playerCol = player.getComponent<ColliderComponent>().collider;
     Vector2D playerPos = player.getComponent<TransformComponent>().position;
     
     std::stringstream ss;
     ss << "Player points " << counter << "000";
     label.getComponent<UILabel>().SetLabelText(ss.str(), "font");
-    
-//    std::stringstream ss2;
-//    ss2 << "Player points"<< " " << playerPos;
-//    label.getComponent<UILabel>().SetLabelText(ss2.str(), "font");
     
     manager.refresh();
     manager.update();
@@ -135,12 +129,7 @@ void Game::update(){
             player.getComponent<TransformComponent>().onGround = true;
         }
     }
-//    for (auto& pr : projectiles) {
-//        if(Collision::AABB(pr->getComponent<ColliderComponent>().collider, player.getComponent<ColliderComponent>().collider)){
-//            std::cout << "Hit player" << std::endl;
-//            pr->destroy();
-//        }
-//    }
+
     for (auto& m : monsters) {
         if(Collision::AABB(m->getComponent<ColliderComponent>().collider, player.getComponent<ColliderComponent>().collider)){
            // std::cout << "Player hit" << std::endl;
@@ -170,7 +159,7 @@ void Game::update(){
         }
     }
 
-    for (i;i<100; i++) {
+    for (i; i<100; i++) {
         Vector2D vec;
         vec.x = rand() % 2000 + 100;
         vec.y = rand() % 2000 + 100;
@@ -181,8 +170,6 @@ void Game::update(){
     camera.x = player.getComponent<TransformComponent>().position.x - 400;
     camera.y = player.getComponent<TransformComponent>().position.y - 320;
     
-//   std::cout << "x:" << player.getComponent<TransformComponent>().position.x  << "y:" << player.getComponent<TransformComponent>().position.y <<std::endl;
-//    std::cout << "x:" << camera.w  << "y:" << camera.h <<std::endl;
     
     if (camera.x < 0) {
         camera.x = 0;
@@ -199,7 +186,6 @@ void Game::update(){
 
 }
 
-//auto& tiles(manager.getGroup(groupMap));
 
 
 void Game::render(){
