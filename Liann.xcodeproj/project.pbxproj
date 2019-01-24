@@ -49,6 +49,7 @@
 		302DADA621F7A57A0087985F /* AssetManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AssetManager.cpp; sourceTree = "<group>"; };
 		302DADA721F7A57A0087985F /* AssetManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetManager.h; sourceTree = "<group>"; };
 		305D2DC421F9AFDF00452F22 /* Liann */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = Liann; path = /Users/fochmaiden/Documents/studia/SGD/Liann/build/Debug/Liann; sourceTree = "<absolute>"; };
+		305D2DC521F9F8CB00452F22 /* UILabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UILabel.h; sourceTree = "<group>"; };
 		30AE534C21F492180068D260 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		30AE535421F4924C0068D260 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		30AE535521F4924C0068D260 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
@@ -89,6 +90,7 @@
 				302DADA221F62C3E0087985F /* TileComponent.h */,
 				302DAD9921F5F5390087985F /* TransformComponent.h */,
 				30E4554221F888AB00151B17 /* ProjectileComponent.h */,
+				305D2DC521F9F8CB00452F22 /* UILabel.h */,
 			);
 			path = ECS;
 			sourceTree = "<group>";

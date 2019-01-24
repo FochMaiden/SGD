@@ -12,7 +12,7 @@
 #include "ECS/Components.h"
 #include "Collision.h"
 #include "AssetManager.h"
-
+#include <sstream>
 
 Map* map;
 Manager manager;
@@ -27,6 +27,7 @@ AssetManager* Game::assets = new AssetManager(&manager);
 bool Game::isRunning = false;
 
 auto& player(manager.addEntity());
+auto& label(manager.addEntity());
 
 int counter=0;
 
@@ -62,13 +63,17 @@ void Game::init(const char *title, int width, int height, bool fullscreen){
         
         isRunning = true;
     }
+    
+    if(TTF_Init() == -1){
+        std::cout << "Error : SDL_TTF" << std::endl;
+    }
+    
     assets->AddTexture("terrain", "res/terrain_ss2.png");
-    
     assets->AddTexture("player", "res/player_anims.png");
-    
     assets->AddTexture("projectile", "res/proj.png");
-    
     assets->AddTexture("monster", "res/monster.png");
+    
+    assets->AddFont("font", "res/font.ttf", 16);
     
     map = new Map("terrain", 6, 32);
     map->LoadMap("res/map3.txt", 25, 20);
@@ -79,10 +84,10 @@ void Game::init(const char *title, int width, int height, bool fullscreen){
     player.addComponent<ColliderComponent>("player");
     player.addGroup(groupPlayers);
     
-    assets->CreateMonster("monster");
+    SDL_Color white = {255,255,255,255};
+    label.addComponent<UILabel>(10, 10, "counter", "font", white);
     
-  //  assets->CreateProjectile(Vector2D(600, 600),Vector2D(2,0), 200, 2, "projectile");
-  //  assets->CreateProjectile(Vector2D(400, 400),Vector2D(2,2), 200, 2, "projectile");
+    assets->CreateMonster("monster");
     
 }
 
@@ -111,27 +116,35 @@ void Game::update(){
     SDL_Rect playerCol = player.getComponent<ColliderComponent>().collider;
     Vector2D playerPos = player.getComponent<TransformComponent>().position;
     
+//    std::stringstream ss;
+//    ss << "Player points"<< " " << counter;
+//    label.getComponent<UILabel>().SetLabelText(ss.str(), "font");
+    
+    std::stringstream ss2;
+    ss2 << "Player points"<< " " << playerPos;
+    label.getComponent<UILabel>().SetLabelText(ss2.str(), "font");
+    
     manager.refresh();
     manager.update();
     
     for(auto& c : colliders){
         SDL_Rect cCol = c->getComponent<ColliderComponent>().collider;
         if (Collision::AABB(cCol, playerCol)) {
-            std::cout << "Hit" << playerPos << std::endl;
+            //std::cout << "Hit" << playerPos << std::endl;
             
             player.getComponent<TransformComponent>().position = playerPos;
             player.getComponent<TransformComponent>().onGround = true;
         }
     }
-    for (auto& pr : projectiles) {
-        if(Collision::AABB(pr->getComponent<ColliderComponent>().collider, player.getComponent<ColliderComponent>().collider)){
-            std::cout << "Hit player" << std::endl;
-          //  pr->destroy();
-        }
-    }
+//    for (auto& pr : projectiles) {
+//        if(Collision::AABB(pr->getComponent<ColliderComponent>().collider, player.getComponent<ColliderComponent>().collider)){
+//            std::cout << "Hit player" << std::endl;
+//            pr->destroy();
+//        }
+//    }
     for (auto& m : monsters) {
         if(Collision::AABB(m->getComponent<ColliderComponent>().collider, player.getComponent<ColliderComponent>().collider)){
-            std::cout << "Player hit" << std::endl;
+           // std::cout << "Player hit" << std::endl;
             m->destroy();
         }
     }
@@ -202,6 +215,7 @@ void Game::render(){
        m->draw();
        
    }
+    label.draw();
     
     SDL_RenderPresent(renderer);
 }
