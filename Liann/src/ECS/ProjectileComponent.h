@@ -31,7 +31,7 @@ public:
         distance +=speed;
         
         if (distance > range) {
-            std::cout << "Out of range" << std::endl;
+            //std::cout << "Out of range" << std::endl;
             entity->destroy();
         }else if(transform->position.x > Game::camera.x + Game::camera.w ||
                  transform->position.x < Game::camera.x ||

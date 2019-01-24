@@ -72,7 +72,7 @@ void Game::init(const char *title, int width, int height, bool fullscreen){
     assets->AddTexture("terrain", "res/terrain_ss.png");
     assets->AddTexture("player", "res/player_anims.png");
     assets->AddTexture("projectile", "res/proj.png");
-    assets->AddTexture("monster", "res/monster.png");
+    assets->AddTexture("monster", "res/monster2.png");
     
     assets->AddFont("font", "res/font.ttf", 20);
     
@@ -140,14 +140,16 @@ void Game::update(){
     
     if (Game::event.type == SDL_KEYDOWN) {
         switch (Game::event.key.keysym.sym) {
-            case SDLK_q:
-                assets->CreateProjectile(Vector2D(playerPos.x-20, playerPos.y),Vector2D(-2,-2), 200, 2, "projectile");
+            case SDLK_z:
+                assets->CreateProjectile(Vector2D(playerPos.x-20, playerPos.y),Vector2D(-2,-2), 80, 2, "projectile");
                 break;
-            case SDLK_e:
-                assets->CreateProjectile(Vector2D(playerPos.x+80, playerPos.y),Vector2D(2,-2), 200, 2, "projectile");
+            case SDLK_c:
+                assets->CreateProjectile(Vector2D(playerPos.x+80, playerPos.y),Vector2D(2,-2), 80, 2, "projectile");
                 break;
-                
-        }}
+            default:
+                break;
+        }
+    }
 
     
     for(auto& monster : monsters){
@@ -160,7 +162,7 @@ void Game::update(){
         }
     }
 
-    for (i; i<50; i++) {
+    for (i ; i<20; i++) {
         Vector2D vec;
         vec.x = rand() % 2000 + 100;
         vec.y = rand() % 2000 + 100;
@@ -178,11 +180,11 @@ void Game::update(){
     if (camera.y < 0) {
         camera.y = 0;
     }
-    if (camera.x > camera.w*3) {
-        camera.x = camera.w*3;
+    if (camera.x > camera.w*4) {
+        camera.x = camera.w*4;
     }
-    if (camera.y  > camera.h*3) {
-        camera.y = camera.h*3;
+    if (camera.y  > camera.h*4) {
+        camera.y = camera.h*4;
     }
 
 }
