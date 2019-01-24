@@ -24,9 +24,9 @@ void AssetManager::CreateProjectile(Vector2D pos, Vector2D vel, int range, int s
     projecitle.addGroup(Game::groupProjectiles);
 }
 
-void AssetManager::CreateMonster(std::string id){
+void AssetManager::CreateMonster(Vector2D pos, std::string id){
     auto& monster(manager->addEntity());
-    monster.addComponent<TransformComponent>(1600, 1600, 32, 32, 2);
+    monster.addComponent<TransformComponent>(pos.x, pos.y, 32, 32, 2);
     monster.addComponent<SpriteComponent>("monster", false);
     monster.addComponent<ColliderComponent>("monster");
     monster.addGroup(Game::groupMonsters);

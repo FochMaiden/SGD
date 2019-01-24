@@ -30,6 +30,7 @@ auto& player(manager.addEntity());
 auto& label(manager.addEntity());
 
 int counter=0;
+int i=0;
 
 Game::Game(){}
 
@@ -68,15 +69,15 @@ void Game::init(const char *title, int width, int height, bool fullscreen){
         std::cout << "Error : SDL_TTF" << std::endl;
     }
     
-    assets->AddTexture("terrain", "res/terrain_ss2.png");
+    assets->AddTexture("terrain", "res/terrain_ss.png");
     assets->AddTexture("player", "res/player_anims.png");
     assets->AddTexture("projectile", "res/proj.png");
     assets->AddTexture("monster", "res/monster.png");
     
     assets->AddFont("font", "res/font.ttf", 16);
     
-    map = new Map("terrain", 6, 32);
-    map->LoadMap("res/map3.txt", 25, 20);
+    map = new Map("terrain", 5, 32);
+    map->LoadMap("res/map.txt", 25, 20);
     
     player.addComponent<TransformComponent>(1600, 1800, 32, 32, 4);
     player.addComponent<SpriteComponent>("player", true);
@@ -86,8 +87,6 @@ void Game::init(const char *title, int width, int height, bool fullscreen){
     
     SDL_Color white = {255,255,255,255};
     label.addComponent<UILabel>(10, 10, "counter", "font", white);
-    
-    assets->CreateMonster("monster");
     
 }
 
@@ -116,13 +115,13 @@ void Game::update(){
     SDL_Rect playerCol = player.getComponent<ColliderComponent>().collider;
     Vector2D playerPos = player.getComponent<TransformComponent>().position;
     
-//    std::stringstream ss;
-//    ss << "Player points"<< " " << counter;
-//    label.getComponent<UILabel>().SetLabelText(ss.str(), "font");
+    std::stringstream ss;
+    ss << "Player points " << counter << "000";
+    label.getComponent<UILabel>().SetLabelText(ss.str(), "font");
     
-    std::stringstream ss2;
-    ss2 << "Player points"<< " " << playerPos;
-    label.getComponent<UILabel>().SetLabelText(ss2.str(), "font");
+//    std::stringstream ss2;
+//    ss2 << "Player points"<< " " << playerPos;
+//    label.getComponent<UILabel>().SetLabelText(ss2.str(), "font");
     
     manager.refresh();
     manager.update();
@@ -171,6 +170,14 @@ void Game::update(){
         }
     }
 
+    for (i;i<100; i++) {
+        Vector2D vec;
+        vec.x = rand() % 2000 + 100;
+        vec.y = rand() % 2000 + 100;
+        
+        assets->CreateMonster(Vector2D(vec.x,vec.y),"monster");
+    }
+    
     camera.x = player.getComponent<TransformComponent>().position.x - 400;
     camera.y = player.getComponent<TransformComponent>().position.y - 320;
     
@@ -202,9 +209,9 @@ void Game::render(){
     for (auto& t : tiles){
         t->draw();
     }
-    for (auto& c : colliders) {
-        c->draw();
-    }
+//    for (auto& c : colliders) {
+//        c->draw();
+//    }
     for (auto& p : players){
         p->draw();
     }

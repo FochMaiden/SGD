@@ -48,7 +48,6 @@
 		302DADA521F73EFC0087985F /* Animation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Animation.h; sourceTree = "<group>"; };
 		302DADA621F7A57A0087985F /* AssetManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AssetManager.cpp; sourceTree = "<group>"; };
 		302DADA721F7A57A0087985F /* AssetManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetManager.h; sourceTree = "<group>"; };
-		305D2DC421F9AFDF00452F22 /* Liann */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = Liann; path = /Users/fochmaiden/Documents/studia/SGD/Liann/build/Debug/Liann; sourceTree = "<absolute>"; };
 		305D2DC521F9F8CB00452F22 /* UILabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UILabel.h; sourceTree = "<group>"; };
 		30AE534C21F492180068D260 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		30AE535421F4924C0068D260 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
@@ -60,6 +59,7 @@
 		30AE536421F4ABC40068D260 /* TextureManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextureManager.h; sourceTree = "<group>"; };
 		30AE536A21F4C4090068D260 /* Map.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Map.cpp; sourceTree = "<group>"; };
 		30AE536B21F4C4090068D260 /* Map.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
+		30B3481321FA1C3F00D9E6D3 /* Liann */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = Liann; path = /Users/fochmaiden/Documents/studia/SGD/Liann/build/Debug/Liann; sourceTree = "<absolute>"; };
 		30E4554221F888AB00151B17 /* ProjectileComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectileComponent.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,7 +167,7 @@
 			);
 			name = Liann;
 			productName = Liann;
-			productReference = 305D2DC421F9AFDF00452F22 /* Liann */;
+			productReference = 30B3481321FA1C3F00D9E6D3 /* Liann */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
