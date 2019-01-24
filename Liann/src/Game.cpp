@@ -62,7 +62,7 @@ void Game::init(const char *title, int width, int height, bool fullscreen){
         
         isRunning = true;
     }
-    assets->AddTexture("terrain", "res/terrain_ss.png");
+    assets->AddTexture("terrain", "res/terrain_ss2.png");
     
     assets->AddTexture("player", "res/player_anims.png");
     
@@ -70,10 +70,10 @@ void Game::init(const char *title, int width, int height, bool fullscreen){
     
     assets->AddTexture("monster", "res/monster.png");
     
-    map = new Map("terrain", 3, 32);
-    map->LoadMap("res/map2.txt", 25, 20);
+    map = new Map("terrain", 6, 32);
+    map->LoadMap("res/map3.txt", 25, 20);
     
-    player.addComponent<TransformComponent>(800, 640, 32, 32, 4);
+    player.addComponent<TransformComponent>(1600, 1800, 32, 32, 4);
     player.addComponent<SpriteComponent>("player", true);
     player.addComponent<KeybardController>();
     player.addComponent<ColliderComponent>("player");
@@ -81,8 +81,8 @@ void Game::init(const char *title, int width, int height, bool fullscreen){
     
     assets->CreateMonster("monster");
     
-    assets->CreateProjectile(Vector2D(600, 600),Vector2D(2,0), 200, 2, "projectile");
-    assets->CreateProjectile(Vector2D(400, 400),Vector2D(2,2), 200, 2, "projectile");
+  //  assets->CreateProjectile(Vector2D(600, 600),Vector2D(2,0), 200, 2, "projectile");
+  //  assets->CreateProjectile(Vector2D(400, 400),Vector2D(2,2), 200, 2, "projectile");
     
 }
 
@@ -106,7 +106,7 @@ void Game::handleEvents(){
 }
 void Game::update(){
     
-     std::cout << counter << std::endl;
+   //  std::cout << counter << std::endl;
     
     SDL_Rect playerCol = player.getComponent<ColliderComponent>().collider;
     Vector2D playerPos = player.getComponent<TransformComponent>().position;
@@ -170,11 +170,11 @@ void Game::update(){
     if (camera.y < 0) {
         camera.y = 0;
     }
-    if (camera.x > camera.w*2) {
-        camera.x = camera.w*2;
+    if (camera.x > camera.w*6) {
+        camera.x = camera.w*6;
     }
-    if (camera.y  > camera.h*2) {
-        camera.y = camera.h*2;
+    if (camera.y  > camera.h*6) {
+        camera.y = camera.h*6;
     }
 
 }
