@@ -37,7 +37,7 @@ public:
                  transform->position.x < Game::camera.x ||
                  transform->position.y > Game::camera.y + Game::camera.h||
                  transform->position.y < Game::camera.y){
-            std::cout << "Out of bounds" << std::endl;
+           // std::cout << "Out of bounds" << std::endl;
             entity->destroy();
         }
     }

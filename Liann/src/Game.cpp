@@ -130,13 +130,6 @@ void Game::update(){
         }
     }
 
-    for (auto& m : monsters) {
-        if(Collision::AABB(m->getComponent<ColliderComponent>().collider, player.getComponent<ColliderComponent>().collider)){
-           // std::cout << "Player hit" << std::endl;
-            m->destroy();
-        }
-    }
-    
     if (Game::event.type == SDL_KEYDOWN) {
         switch (Game::event.key.keysym.sym) {
             case SDLK_q:
@@ -159,7 +152,7 @@ void Game::update(){
         }
     }
 
-    for (i; i<100; i++) {
+    for (i; i<50; i++) {
         Vector2D vec;
         vec.x = rand() % 2000 + 100;
         vec.y = rand() % 2000 + 100;
